@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+SKILL_DIR = ROOT / "ig-tech-avatar-posts"
 SKILL_PATH = ROOT / "ig-tech-avatar-posts" / "SKILL.md"
 SPEC_PATH = ROOT / "tools" / "scripts" / "create_slides_from_json.py"
 EXAMPLES_DIR = ROOT / "examples"
@@ -44,8 +45,28 @@ def validate_skill_frontmatter(path: Path) -> None:
     for key in ("name:", "description:"):
         if key not in frontmatter:
             fail(f"{path} necesita {key}")
+    name_match = re.search(r"^name:\s*(?P<name>[A-Za-z0-9_-]+)\s*$", frontmatter, re.MULTILINE)
+    if not name_match:
+        fail(f"{path} necesita un name simple en frontmatter")
+    if name_match.group("name") != SKILL_DIR.name:
+        fail(f"{path} name debe coincidir con el directorio: {SKILL_DIR.name}")
     if len(text.splitlines()) > 500:
         fail(f"{path} supera 500 lineas; mueve detalle a references/")
+
+
+def validate_skill_layout() -> None:
+    if (ROOT / "SKILL.md").exists():
+        fail("No debe existir SKILL.md en la raiz; usa ig-tech-avatar-posts/SKILL.md")
+    root_agents = ROOT / "agents"
+    if root_agents.exists() and any(root_agents.iterdir()):
+        fail("No debe existir agents/ en la raiz sin SKILL.md raiz")
+    for required in (
+        SKILL_DIR / "agents" / "openai.yaml",
+        SKILL_DIR / "references",
+        SKILL_DIR / "scripts",
+    ):
+        if not required.exists():
+            fail(f"Falta recurso requerido de la skill: {required}")
 
 
 def validate_json_files() -> list[Path]:
@@ -80,6 +101,7 @@ def validate_render_contract(example_files: list[Path]) -> None:
 
 
 def main() -> None:
+    validate_skill_layout()
     validate_skill_frontmatter(SKILL_PATH)
     example_files = validate_json_files()
     validate_render_contract(example_files)

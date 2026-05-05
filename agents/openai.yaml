@@ -1,4 +1,0 @@
-interface:
-  display_name: "IG Tech Avatar Posts"
-  short_description: "Carruseles IG tech premium con avatar"
-  default_prompt: "Crea un carrusel de Instagram tech premium con avatar consistente, copy corto, narrativa slide-a-slide y prompts listos para generar."
