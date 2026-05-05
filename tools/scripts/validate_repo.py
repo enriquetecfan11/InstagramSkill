@@ -9,7 +9,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SKILL_PATH = ROOT / "skill" / "ig-tech-avatar-posts" / "SKILL.md"
+ROOT_SKILL_PATH = ROOT / "SKILL.md"
+CANONICAL_SKILL_PATH = ROOT / "skill" / "ig-tech-avatar-posts" / "SKILL.md"
 SPEC_PATH = ROOT / "tools" / "scripts" / "create_slides_from_json.py"
 EXAMPLES_DIR = ROOT / "examples"
 
@@ -35,17 +36,17 @@ def load_spec_module():
     return module
 
 
-def validate_skill_frontmatter() -> None:
-    text = SKILL_PATH.read_text(encoding="utf-8")
+def validate_skill_frontmatter(path: Path) -> None:
+    text = path.read_text(encoding="utf-8")
     match = re.match(r"^---\n(?P<body>.*?)\n---\n", text, re.DOTALL)
     if not match:
-        fail("SKILL.md necesita frontmatter YAML delimitado por ---")
+        fail(f"{path} necesita frontmatter YAML delimitado por ---")
     frontmatter = match.group("body")
     for key in ("name:", "description:"):
         if key not in frontmatter:
-            fail(f"SKILL.md necesita {key}")
+            fail(f"{path} necesita {key}")
     if len(text.splitlines()) > 500:
-        fail("SKILL.md supera 500 lineas; mueve detalle a references/")
+        fail(f"{path} supera 500 lineas; mueve detalle a references/")
 
 
 def validate_json_files() -> list[Path]:
@@ -80,7 +81,8 @@ def validate_render_contract(example_files: list[Path]) -> None:
 
 
 def main() -> None:
-    validate_skill_frontmatter()
+    validate_skill_frontmatter(ROOT_SKILL_PATH)
+    validate_skill_frontmatter(CANONICAL_SKILL_PATH)
     example_files = validate_json_files()
     validate_render_contract(example_files)
     print("OK: skill, ejemplos y contrato de render validados.")
