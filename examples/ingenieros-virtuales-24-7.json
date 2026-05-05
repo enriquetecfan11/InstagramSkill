@@ -1,0 +1,126 @@
+{
+  "slug": "ingenieros-virtuales-24-7",
+  "tema": "Codex con GPT-5.5 y el futuro del desarrollo de software",
+  "angulo": "La IA deja de ser autocompletado y empieza a comportarse como un ingeniero virtual",
+  "idioma": "ES",
+  "num_slides": 7,
+  "cta": "",
+  "avatar": {
+    "ruta": "assets/avatar-upload/imagen_1.png",
+    "regla": "obligatorio en todas las slides; avatar centrado en su zona visual"
+  },
+  "brand": {
+    "show": true,
+    "text": "enriquetecfan"
+  },
+  "hud": {
+    "show": true,
+    "top_left": "",
+    "eyebrow": "",
+    "show_slide_number": true
+  },
+  "visual": {
+    "estilo": "tech premium oscuro editorial",
+    "acento": "cyan",
+    "motivo": "IA SOFTWARE",
+    "formato": "1080x1080",
+    "margen_seguro": 64,
+    "templates": "A/B alternado",
+    "composicion": {
+      "grid": "2 columnas invisibles",
+      "zona_texto": "55%",
+      "zona_avatar": "45%",
+      "avatar_safe_area": true,
+      "avatar_centrado_en_su_zona": true,
+      "avatar_altura": "55-70%",
+      "margen_minimo_lateral": "80px",
+      "margen_minimo_inferior": "50px",
+      "evitar_cortes": true,
+      "evitar_superposicion_texto": true
+    }
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "tipo": "hook",
+      "titular": "INGENIEROS VIRTUALES 24/7",
+      "subtitulo": "Hoy he probado Codex con GPT-5.5 y la sensacion es clara.",
+      "puntos": [],
+      "frase": "Hemos cruzado otra frontera.",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 2,
+      "tipo": "idea",
+      "titular": "NO ES SOLO SUGERIR",
+      "subtitulo": "Esto ya no se siente como una IA que sugiere codigo.",
+      "puntos": [],
+      "frase": "Se siente como un ingeniero virtual dentro del equipo.",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 3,
+      "tipo": "lista",
+      "titular": "QUE PUEDE HACER",
+      "subtitulo": "Entiende contexto grande. Propone un plan. Toca varias partes del sistema.",
+      "puntos": [
+        "Genera tests",
+        "Corrige errores sin perder el hilo"
+      ],
+      "frase": "",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 4,
+      "tipo": "insight",
+      "titular": "RAZONA EL SISTEMA",
+      "subtitulo": "La diferencia no esta solo en que escriba codigo.",
+      "puntos": [],
+      "frase": "Empieza a razonar sobre el sistema.",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 5,
+      "tipo": "detalle",
+      "titular": "PIENSA EN RIESGOS",
+      "subtitulo": "Que puede romperse. Que dependencias hay. Que conviene probar.",
+      "puntos": [
+        "Que parte necesita refactor",
+        "Y cual no"
+      ],
+      "frase": "",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 6,
+      "tipo": "impacto",
+      "titular": "DELEGA A AGENTES",
+      "subtitulo": "Refactors, migraciones, debugging y pruebas ya no tienen por que bloquear horas.",
+      "puntos": [],
+      "frase": "Ahora se pueden delegar a agentes que no se cansan.",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 7,
+      "tipo": "cierre",
+      "titular": "LA NUEVA PREGUNTA",
+      "subtitulo": "En 2020 preguntabamos si la IA iba a programar.",
+      "puntos": [],
+      "frase": "En 2026: que equipo construyes con ingenieros virtuales siempre encendidos?",
+      "layout": "texto / avatar"
+    }
+  ],
+  "caption": {
+    "texto": "Hoy he probado Codex con GPT-5.5 y la sensacion es clara: esto ya no va solo de escribir codigo mas rapido. La diferencia esta en que empieza a razonar sobre sistemas completos: dependencias, riesgos, tests, refactors y decisiones tecnicas. No va de sustituir desarrolladores. Va de redisenar como trabaja un equipo cuando puede delegar trabajo tecnico a agentes que no se cansan.",
+    "cta": "",
+    "hashtags": [
+      "#IA",
+      "#InteligenciaArtificial",
+      "#Codex",
+      "#OpenAI",
+      "#DesarrolloDeSoftware",
+      "#Automatizacion",
+      "#AgentesIA"
+    ]
+  }
+}

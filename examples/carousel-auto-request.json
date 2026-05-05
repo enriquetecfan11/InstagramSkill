@@ -1,0 +1,17 @@
+{
+  "slug": "auto-ia-ventas",
+  "tema": "IA para automatizar ventas",
+  "angulo": "Errores que hacen que tus automatizaciones no conviertan",
+  "num_slides": 7,
+  "cta": "Comenta AUTOMATIZAR",
+  "avatar": {
+    "ruta": "assets/avatar-upload/imagen_1.png"
+  },
+  "visual": {
+    "estilo": "tech premium oscuro editorial",
+    "acento": "cyan",
+    "motivo": "HUD UI",
+    "formato": "1080x1080",
+    "templates": "A/B alternado"
+  }
+}

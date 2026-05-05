@@ -1,0 +1,62 @@
+{
+  "slug": "ia-automatizacion-ventas",
+  "tema": "IA para automatizar ventas",
+  "angulo": "Errores que hacen que tus automatizaciones no conviertan",
+  "idioma": "ES",
+  "avatar": {
+    "ruta": "assets/avatar-upload/imagen_1.png",
+    "regla": "obligatorio en todas las slides; template A avatar derecha, template B avatar izquierda"
+  },
+  "visual": {
+    "estilo": "tech premium oscuro editorial",
+    "acento": "cyan",
+    "motivo": "HUD UI",
+    "formato": "1080x1080",
+    "margen_seguro": 64,
+    "templates": "A/B alternado"
+  },
+  "slides": [
+    {
+      "titular": "Tu automatizacion no falla por la IA",
+      "subtitulo": "Falla porque no tiene sistema.",
+      "puntos": ["Demasiadas excepciones", "Datos sin limpiar", "Sin regla de salida"],
+      "frase": "Primero sistema. Luego IA."
+    },
+    {
+      "titular": "Error 1: automatizar caos",
+      "subtitulo": "Si el proceso manual es confuso, la IA solo lo escala.",
+      "puntos": ["Define entrada", "Define criterio", "Define salida"],
+      "frase": "No automatices lo que aun no entiendes."
+    },
+    {
+      "titular": "Error 2: pedir magia",
+      "subtitulo": "Un prompt no reemplaza una decision de negocio.",
+      "puntos": ["Contexto", "Restricciones", "Ejemplos"],
+      "frase": "La IA ejecuta mejor cuando tu criterio es claro."
+    },
+    {
+      "titular": "Error 3: no medir nada",
+      "subtitulo": "Sin metricas, no sabes si la automatizacion mejora o estorba.",
+      "puntos": ["Tiempo ahorrado", "Errores reducidos", "Conversion real"],
+      "frase": "Lo que no se mide se convierte en decoracion."
+    },
+    {
+      "titular": "La regla simple",
+      "subtitulo": "Automatiza solo lo repetible, medible y reversible.",
+      "puntos": ["Repetible", "Medible", "Reversible"],
+      "frase": "Ese es el filtro."
+    },
+    {
+      "titular": "Flujo minimo",
+      "subtitulo": "Entrada limpia -> criterio -> accion -> revision.",
+      "puntos": ["Trigger", "IA", "Validacion"],
+      "frase": "Menos piezas. Mas control."
+    },
+    {
+      "titular": "Guarda este sistema",
+      "subtitulo": "Usalo antes de crear tu proxima automatizacion.",
+      "puntos": ["Proceso claro", "IA con contexto", "Metricas desde el dia 1"],
+      "frase": "Comenta AUTOMATIZAR"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "chatbots-vs-agentes",
+  "tema": "ChatBots vs Agentes de IA",
+  "angulo": "La diferencia real entre una IA que responde y una IA que ejecuta",
+  "num_slides": 5,
+  "cta": "Comenta AGENTES",
+  "avatar": {
+    "ruta": "assets/avatar-upload/imagen_1.png"
+  },
+  "visual": {
+    "estilo": "tech premium oscuro editorial",
+    "acento": "cyan",
+    "motivo": "HUD UI",
+    "formato": "1080x1080",
+    "templates": "A/B alternado"
+  }
+}

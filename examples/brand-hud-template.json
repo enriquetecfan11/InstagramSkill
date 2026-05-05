@@ -1,0 +1,12 @@
+{
+  "brand": {
+    "show": true,
+    "text": "Nombre o marca del usuario"
+  },
+  "hud": {
+    "show": true,
+    "top_left": "Categoria del post",
+    "eyebrow": "Etiqueta tematica",
+    "show_slide_number": true
+  }
+}

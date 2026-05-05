@@ -1,0 +1,32 @@
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Local env/secrets
+.env
+.env.*
+
+# Local browser/test diagnostics
+diagnostics/
+
+# Generated analysis and exports
+analysis/
+outputs/
+
+# Legacy generated folders, kept here to avoid reintroducing old layout names
+_avatar_upload/
+_avatar_analysis/
+_carousel_out/
+_skill_patch/
+
+# Local archives and scratch material
+archive/
+tmp/
