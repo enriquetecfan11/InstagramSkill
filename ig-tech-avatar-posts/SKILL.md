@@ -1,9 +1,18 @@
 ---
 name: ig-tech-avatar-posts
-description: Diseñar carruseles completos de Instagram (5–10 slides) con identidad visual totalmente consistente (paleta, tipografía, composición, iluminación, fondos tech premium) y storytelling editorial optimizado para retención, branding y viralidad, usando un avatar/“muñeco” como ancla de marca en toda la secuencia. Usar cuando el usuario pida carruseles cohesionados (no posts sueltos), guiones slide-a-slide, dirección de arte unificada, copy corto integrado en la composición, y prompts listos para generar/editar todas las slides como una campaña reconocible.
+description: Diseñar carruseles de Instagram (5–10 slides) con estética tech premium y un avatar consistente. Usar esta skill para producir guión slide-a-slide, dirección de arte, copy y prompts listos para generar.
 ---
 
 # Ig Tech Avatar Posts
+
+## Instructions
+
+Producir un “carousel spec” repetible (story + dirección de arte + copy + prompts) con consistencia de marca y variedad controlada, priorizando claridad, espacio negativo, jerarquía y un look futurista profesional.
+
+Aplicar siempre:
+- Respetar el contrato de `brand` y `hud` (no imprimir textos internos).
+- Respetar la regla obligatoria de `avatar_box` (layout 2 zonas, sin cortes, sin aura/glow/halo).
+- Usar `references/` para layouts, tokens, estructura editorial y bloques de prompts/copy.
 
 ## Reglas visibles de exportacion
 
@@ -16,8 +25,6 @@ description: Diseñar carruseles completos de Instagram (5–10 slides) con iden
 - Si se trabaja dentro del repositorio de la skill, ejecutar `python3 tools/scripts/validate_repo.py` antes de considerar lista una entrega versionable.
 
 ## Workflow
-
-Producir un “carousel spec” repetible (story + dirección de arte + copy + prompts) con consistencia de marca y variedad controlada, priorizando claridad, espacio negativo, jerarquía y un look futurista profesional.
 
 ### 1) Intake (preguntar y fijar constraints)
 
@@ -194,3 +201,14 @@ Fórmulas de copy corto, potente y estratégico (ES/EN) para titular + microcopy
 
 ### `scripts/make_post_spec.py` (opcional)
 Generar un “post/carousel spec” en JSON con estructura fija (útil para iterar y versionar).
+
+## Bundled Resources
+
+- `references/layouts.md`: layouts repetibles y variaciones seguras.
+- `references/master-composition-templates.md`: templates maestras 1080×1080 (avatar derecha/izquierda).
+- `references/carousel-structure.md`: estructura editorial y roles por slide.
+- `references/brand-tokens.md`: tokens de identidad (paleta, tipografía, grid, sombras, glow).
+- `references/avatar-pack.md`: organización de pack de poses y asignación por rol.
+- `references/prompt-blocks.md`: bloques de prompt para coherencia + variación controlada.
+- `references/copy-formulas.md`: fórmulas de copy (ES/EN) para titular, microcopy y caption.
+- `scripts/make_post_spec.py`: generador opcional de “post spec” en JSON.

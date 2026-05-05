@@ -9,8 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ROOT_SKILL_PATH = ROOT / "SKILL.md"
-CANONICAL_SKILL_PATH = ROOT / "skill" / "ig-tech-avatar-posts" / "SKILL.md"
+SKILL_PATH = ROOT / "ig-tech-avatar-posts" / "SKILL.md"
 SPEC_PATH = ROOT / "tools" / "scripts" / "create_slides_from_json.py"
 EXAMPLES_DIR = ROOT / "examples"
 
@@ -81,8 +80,7 @@ def validate_render_contract(example_files: list[Path]) -> None:
 
 
 def main() -> None:
-    validate_skill_frontmatter(ROOT_SKILL_PATH)
-    validate_skill_frontmatter(CANONICAL_SKILL_PATH)
+    validate_skill_frontmatter(SKILL_PATH)
     example_files = validate_json_files()
     validate_render_contract(example_files)
     print("OK: skill, ejemplos y contrato de render validados.")

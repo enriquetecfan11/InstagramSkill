@@ -10,7 +10,7 @@
 
 Commit the source of the skill, examples, base avatar assets, and scripts:
 
-- `skill/`
+- `ig-tech-avatar-posts/`
 - `tools/`
 - `examples/`
 - `assets/`
@@ -22,7 +22,7 @@ Those folders are intentionally ignored.
 
 ## Skill changes
 
-Keep `skill/ig-tech-avatar-posts/SKILL.md` focused on the workflow. Put detailed systems,
-templates, prompt blocks, and examples in `skill/ig-tech-avatar-posts/references/`.
+Keep `ig-tech-avatar-posts/SKILL.md` focused on the workflow. Put detailed systems,
+templates, prompt blocks, and examples in `ig-tech-avatar-posts/references/`.
 
 When changing rendering behavior, update at least one JSON example if the contract changes.

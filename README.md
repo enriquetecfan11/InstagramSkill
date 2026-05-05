@@ -2,13 +2,11 @@
 
 Repositorio para mantener una skill de Codex que diseña y genera carruseles de Instagram (estilo tech premium) con un avatar consistente.
 
-El repositorio ahora incluye un `SKILL.md` en la raíz para que pueda usarse directamente como skill desde GitHub. La fuente canónica editable sigue viviendo en `skill/ig-tech-avatar-posts/`.
+La fuente canónica editable de la skill vive en `ig-tech-avatar-posts/`.
 
 ## Qué incluye
 
-- `skill/ig-tech-avatar-posts/`: skill principal con `SKILL.md`, referencias y scripts internos.
-- `SKILL.md`: entrypoint raíz para instalar/usar el repositorio completo como skill.
-- `agents/openai.yaml`: metadata de interfaz para el entrypoint raíz.
+- `ig-tech-avatar-posts/`: skill principal con `SKILL.md`, referencias y scripts internos.
 - `examples/`: entradas JSON listas para generar carruseles.
 - `assets/avatar-upload/`: pack base de avatares con fondo transparente.
 - `tools/scripts/`: utilidades internas (render, export, validación).
@@ -22,13 +20,9 @@ Si quieres generar/exportar carruseles localmente, consulta `TOOLS.md`.
 
 ## Uso como skill
 
-Opción recomendada si el instalador acepta repositorios completos:
+Instalar apuntando al directorio del skill:
 
-`enriquetecfan11/InstagramSkill`
-
-Opción explícita si quieres apuntar a la carpeta canónica:
-
-`enriquetecfan11/InstagramSkill/skill/ig-tech-avatar-posts`
+`enriquetecfan11/InstagramSkill/ig-tech-avatar-posts`
 
 ## Contrato de `brand` y `hud`
 
