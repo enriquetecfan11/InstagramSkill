@@ -1,0 +1,108 @@
+{
+  "slug": "amenaza-ia-ciberseguridad",
+  "tema": "IA en ciberseguridad",
+  "angulo": "Los atacantes ya usan IA mientras las empresas siguen defendiéndose con sistemas obsoletos",
+  "num_slides": 7,
+  "cta": "Post completo en LinkedIn",
+  "avatar": {
+    "ruta": "assets/avatar-upload/imagen_1.png",
+    "usar_pack": true
+  },
+  "visual": {
+    "estilo": "tech premium oscuro editorial",
+    "acento": "hacker-red",
+    "motivo": "glitch, ojo digital, código vulnerable, ciberataque IA",
+    "formato": "1080x1080",
+    "templates": "A/B alternado"
+  },
+  "brand": {
+    "show": true,
+    "text": "Enrique Rodríguez Vela"
+  },
+  "hud": {
+    "show": true,
+    "top_left": "IA EN CIBERSEGURIDAD",
+    "eyebrow": "AMENAZA IA",
+    "show_slide_number": true
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "tipo": "hook",
+      "titular": "LA AMENAZA QUE NO VES",
+      "subtitulo": "La IA ya está siendo usada para atacar.",
+      "puntos": [],
+      "frase": "Y casi nadie está mirando ahí.",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 2,
+      "tipo": "contexto",
+      "titular": "MIENTRAS TÚ PIENSAS EN EMPLEO",
+      "subtitulo": "Media empresa debate si la IA quitará trabajos...",
+      "puntos": [],
+      "frase": "Los atacantes la usan para escalar ataques.",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 3,
+      "tipo": "lista",
+      "titular": "LO QUE YA ESTÁ PASANDO",
+      "subtitulo": "Deepfakes que superan biometría.",
+      "puntos": [
+        "Prompt injection",
+        "Data poisoning"
+      ],
+      "frase": "Ataques que evolucionan solos.",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 4,
+      "tipo": "insight",
+      "titular": "NO SON ATAQUES NORMALES",
+      "subtitulo": "No siguen reglas fijas. Aprenden de tu defensa.",
+      "puntos": [],
+      "frase": "Se adaptan en tiempo real. Mejoran cada intento.",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 5,
+      "tipo": "problema",
+      "titular": "EL VERDADERO PROBLEMA",
+      "subtitulo": "No es la IA.",
+      "puntos": [],
+      "frase": "Es protegerte con estrategias diseñadas hace 5 años.",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 6,
+      "tipo": "impacto",
+      "titular": "ESTÁS EN DESVENTAJA",
+      "subtitulo": "Es como jugar ajedrez contra alguien",
+      "puntos": [],
+      "frase": "que juega en otra dimensión.",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 7,
+      "tipo": "cierre",
+      "titular": "LA PREGUNTA REAL",
+      "subtitulo": "No es si vendrán adversarios inteligentes.",
+      "puntos": [],
+      "frase": "Es si tu infraestructura sobrevivirá cuando lleguen.",
+      "layout": "texto / avatar"
+    }
+  ],
+  "caption": {
+    "texto": "La IA no solo está transformando negocios… también está transformando cómo se ataca.\n\nMientras muchos siguen enfocados en productividad, los atacantes ya la usan para escalar amenazas: deepfakes, prompt injection, data poisoning y ataques adaptativos.\n\nEl problema no es la IA.\nEs defenderte con estrategias de 2020.\n\nPost completo en LinkedIn:\nwww.linkedin.com/in/enrique-rodriguez-vela",
+    "hashtags": [
+      "#IA",
+      "#InteligenciaArtificial",
+      "#Ciberseguridad",
+      "#Cybersecurity",
+      "#Seguridad",
+      "#AIOps",
+      "#Tecnología"
+    ]
+  }
+}

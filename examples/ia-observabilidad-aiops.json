@@ -1,0 +1,107 @@
+{
+  "slug": "ia-observabilidad-aiops",
+  "tema": "IA + Observabilidad",
+  "angulo": "Cómo pasar de reaccionar a caídas a anticiparlas antes del impacto",
+  "num_slides": 7,
+  "cta": "",
+  "avatar": {
+    "ruta": "assets/avatar-upload/no_bg_imagen_1.png",
+    "usar_pack": true,
+    "regla": "usar una pose distinta del pack en cada slide; no repetir el mismo avatar en todo el carrusel"
+  },
+  "visual": {
+    "estilo": "tech premium oscuro",
+    "acento": "cyan",
+    "motivo": "logs + métricas + trazas conectadas en UI glass + observability HUD",
+    "formato": "1080x1080",
+    "templates": "A/B alternado"
+  },
+  "brand": {
+    "show": true,
+    "text": "Enrique Rodríguez Vela"
+  },
+  "hud": {
+    "show": true,
+    "top_left": "IA + OBSERVABILIDAD",
+    "eyebrow": "AIOPS",
+    "show_slide_number": true
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "tipo": "hook",
+      "titular": "Tu sistema cayó a las 3:07 AM",
+      "subtitulo": "Silencio. Nadie lo vio venir.",
+      "puntos": [],
+      "frase": "",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 2,
+      "tipo": "pain",
+      "titular": "La observabilidad tradicional llega tarde",
+      "subtitulo": "Te dice qué pasó… cuando ya estás apagando incendios.",
+      "puntos": [],
+      "frase": "",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 3,
+      "tipo": "reframe",
+      "titular": "La IA cambia la pregunta",
+      "subtitulo": "No solo qué pasó. Sino por qué, cuándo volverá y cómo evitarlo.",
+      "puntos": [],
+      "frase": "",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 4,
+      "tipo": "mechanism",
+      "titular": "De dashboards a inteligencia operativa",
+      "subtitulo": "Logs + métricas + trazas → contexto, correlación y anticipación.",
+      "puntos": [
+      ],
+      "frase": "",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 5,
+      "tipo": "application",
+      "titular": "Lo que esto activa",
+      "subtitulo": "Detección temprana. Root cause analysis. Alertas inteligentes.",
+      "puntos": [
+      ],
+      "frase": "",
+      "layout": "texto / avatar"
+    },
+    {
+      "slide": 6,
+      "tipo": "future",
+      "titular": "Ya no es solo monitoreo",
+      "subtitulo": "Es infraestructura que aprende de sus propios patrones.",
+      "puntos": [],
+      "frase": "",
+      "layout": "avatar / texto"
+    },
+    {
+      "slide": 7,
+      "tipo": "closing",
+      "titular": "Operar sin IA pronto será como volar sin radar",
+      "subtitulo": "No imposible. Pero sí innecesariamente arriesgado.",
+      "puntos": [],
+      "frase": "",
+      "layout": "texto / avatar"
+    }
+  ],
+  "caption": {
+    "texto": "La observabilidad ya no va solo de mirar dashboards.\n\nCon IA, logs, métricas y trazas dejan de ser datos aislados y se convierten en inteligencia operativa: contexto, correlación y anticipación.\n\nLa diferencia no es ver más.\nEs reaccionar menos tarde.",
+    "hashtags": [
+      "#IA",
+      "#InteligenciaArtificial",
+      "#Observabilidad",
+      "#AIOps",
+      "#Automatización",
+      "#Tecnología"
+    ]
+  }
+}

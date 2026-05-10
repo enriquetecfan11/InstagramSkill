@@ -246,6 +246,42 @@ def render_points(points: list[str]) -> str:
     return f"<ul>{items}</ul>"
 
 
+def visual_palette(accent: str) -> dict[str, str]:
+    palettes = {
+        "cyan": {
+            "accent": "#23d5ff",
+            "secondary": "#39ff88",
+            "danger": "#ff3b4f",
+            "glow": "rgba(35, 213, 255, 0.30)",
+        },
+        "electric blue": {
+            "accent": "#3a86ff",
+            "secondary": "#39ff88",
+            "danger": "#ff3b4f",
+            "glow": "rgba(58, 134, 255, 0.30)",
+        },
+        "violet": {
+            "accent": "#8b5cf6",
+            "secondary": "#23d5ff",
+            "danger": "#ff3b4f",
+            "glow": "rgba(139, 92, 246, 0.26)",
+        },
+        "magenta": {
+            "accent": "#ff4fd8",
+            "secondary": "#23d5ff",
+            "danger": "#ff3b4f",
+            "glow": "rgba(255, 79, 216, 0.24)",
+        },
+        "hacker-red": {
+            "accent": "#39ff88",
+            "secondary": "#23d5ff",
+            "danger": "#ff3448",
+            "glow": "rgba(57, 255, 136, 0.22)",
+        },
+    }
+    return palettes.get(str(accent).lower(), palettes["cyan"])
+
+
 def slide_template(slide: dict, index: int, total: int, avatar_src: str, data: dict) -> str:
     visual = data.get("visual", {})
     hud = data.get("hud", {})
@@ -262,6 +298,8 @@ def slide_template(slide: dict, index: int, total: int, avatar_src: str, data: d
     chrome = render_chrome(index, total, hud)
     eyebrow = render_eyebrow(hud)
     brand_html = render_brand(brand)
+    closing = str(slide.get("frase") or "").strip()
+    closing_html = f'<p class="closing">{esc(closing)}</p>' if closing else ""
 
     return f"""
     <section class="slide {side_class}">
@@ -272,7 +310,7 @@ def slide_template(slide: dict, index: int, total: int, avatar_src: str, data: d
         <h1>{esc(slide.get("titular"))}</h1>
         <p class="subtitle">{esc(slide.get("subtitulo"))}</p>
         {points}
-        <p class="closing">{esc(slide.get("frase"))}</p>
+        {closing_html}
       </div>
       <figure class="avatar-box">
         <img src="{esc(avatar_src)}" alt="Avatar protagonista" />
@@ -291,13 +329,7 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
         for idx, slide in enumerate(slides, start=1)
     )
     topic = esc(data.get("tema", "Carousel"))
-    accent = str(visual.get("acento", "cyan")).lower()
-    accent_color = {
-        "cyan": "#23d5ff",
-        "electric blue": "#3a86ff",
-        "violet": "#8b5cf6",
-        "magenta": "#ff4fd8",
-    }.get(accent, "#23d5ff")
+    palette = visual_palette(str(visual.get("acento", "cyan")))
 
     return f"""<!doctype html>
 <html lang="es">
@@ -311,14 +343,12 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
       --panel: rgba(15, 22, 32, 0.64);
       --text: #e7eef7;
       --muted: #9bb0c6;
-      --accent: {accent_color};
+      --accent: {palette["accent"]};
+      --secondary: {palette["secondary"]};
+      --danger: {palette["danger"]};
+      --glow: {palette["glow"]};
       --safe: 64px;
-      --text-zone: 55%;
-      --avatar-zone: 45%;
-      --avatar-box-width: 430px;
-      --avatar-box-height: 700px;
-      --avatar-side-margin: 80px;
-      --avatar-bottom-margin: 50px;
+      --avatar-bottom-margin: 0px;
     }}
 
     * {{ box-sizing: border-box; }}
@@ -335,8 +365,9 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
       height: 1080px;
       overflow: hidden;
       background:
-        radial-gradient(circle at 72% 34%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 30%),
-        radial-gradient(circle at 18% 78%, rgba(139, 92, 246, 0.20), transparent 26%),
+        radial-gradient(circle at 72% 34%, var(--glow), transparent 30%),
+        radial-gradient(circle at 19% 77%, rgba(35, 213, 255, 0.13), transparent 25%),
+        radial-gradient(circle at 82% 82%, rgba(57, 255, 136, 0.08), transparent 22%),
         linear-gradient(135deg, #070b11 0%, #0b121c 48%, #05070b 100%);
       border: 1px solid rgba(255,255,255,0.04);
       isolation: isolate;
@@ -348,7 +379,9 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
       inset: 0;
       background-image:
         linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, transparent 0 78%, rgba(57,255,136,0.09) 79%, transparent 80%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(35,213,255,0.04) 32px, transparent 33px);
       background-size: 72px 72px;
       mask-image: radial-gradient(circle at center, black, transparent 78%);
       opacity: 0.34;
@@ -366,58 +399,65 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
 
     .chrome {{
       position: absolute;
-      top: var(--safe);
-      font-size: 22px;
+      top: 48px;
+      font-size: 20px;
       line-height: 1;
-      color: var(--muted);
+      color: var(--text);
       letter-spacing: 0;
       text-transform: uppercase;
     }}
-    .top-left {{ left: var(--safe); }}
-    .top-right {{ right: var(--safe); font-variant-numeric: tabular-nums; }}
+    .top-left {{ left: 48px; }}
+    .top-right {{ right: 48px; font-variant-numeric: tabular-nums; }}
     .brand {{
       position: absolute;
-      bottom: var(--safe);
-      font-size: 24px;
-      color: var(--muted);
+      bottom: 42px;
+      font-size: 20px;
+      color: var(--text);
     }}
-    .avatar-right .brand {{ left: var(--safe); }}
-    .avatar-left .brand {{ right: var(--safe); }}
+    .avatar-right .brand {{ left: 48px; }}
+    .avatar-left .brand {{ right: 48px; }}
 
     .copy {{
       position: absolute;
-      top: 186px;
+      top: 185px;
       z-index: 3;
+      padding: 0;
+      background: none;
+      border-left: 0;
     }}
     .avatar-right .copy {{
-      left: var(--safe);
-      width: calc(var(--text-zone) - (var(--safe) * 2));
+      left: 48px;
+      width: 40%;
     }}
     .avatar-left .copy {{
-      left: var(--text-zone);
-      width: calc(100% - var(--text-zone) - var(--safe));
+      top: 180px;
+      right: 48px;
+      left: auto;
+      width: 42%;
     }}
 
     .eyebrow {{
       margin: 0 0 18px;
-      color: var(--accent);
+      color: var(--text);
       font-size: 20px;
       font-weight: 700;
       text-transform: uppercase;
     }}
     h1 {{
       margin: 0;
-      font-size: 84px;
-      line-height: 0.9;
+      font-size: 72px;
+      line-height: 1;
       letter-spacing: 0;
-      max-width: 9ch;
+      font-weight: 800;
+      max-width: 10ch;
     }}
     .subtitle {{
-      margin: 26px 0 0;
-      color: var(--muted);
-      font-size: 34px;
-      line-height: 1.08;
-      max-width: 13ch;
+      margin: 38px 0 0;
+      color: var(--text);
+      font-size: 36px;
+      line-height: 1.15;
+      max-width: 15ch;
+      padding-left: 32px;
     }}
     ul {{
       list-style: none;
@@ -425,9 +465,10 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
       padding: 0;
       display: grid;
       gap: 12px;
-      color: #d9e5f2;
+      color: var(--text);
       font-size: 30px;
       line-height: 1.05;
+      padding-left: 32px;
     }}
     li::before {{
       content: "";
@@ -436,39 +477,43 @@ def build_html(data: dict, avatar_rels: list[str]) -> str:
       height: 10px;
       margin-right: 14px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 18px var(--accent);
+      background: var(--danger);
+      box-shadow: 0 0 18px var(--danger);
       vertical-align: 4px;
     }}
     .closing {{
-      margin: 40px 0 0;
+      margin: 38px 0 0;
       color: var(--text);
-      font-size: 30px;
+      font-size: 36px;
       font-weight: 800;
-      line-height: 1.06;
-      max-width: 13ch;
+      line-height: 1.15;
+      max-width: 15ch;
     }}
 
     .avatar-box {{
       position: absolute;
       bottom: var(--avatar-bottom-margin);
-      width: var(--avatar-box-width);
-      height: var(--avatar-box-height);
       margin: 0;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      z-index: 2;
+      z-index: 1;
     }}
     .avatar-right .avatar-box {{
-      right: var(--avatar-side-margin);
+      right: 0;
+      width: 56%;
+      height: 100%;
     }}
     .avatar-left .avatar-box {{
-      left: var(--avatar-side-margin);
+      left: 0;
+      width: 54%;
+      height: 100%;
     }}
     .avatar-box img {{
-      max-width: 100%;
-      max-height: 100%;
+      width: auto;
+      height: 88%;
+      max-width: none;
+      max-height: none;
       object-fit: contain;
       object-position: center bottom;
     }}

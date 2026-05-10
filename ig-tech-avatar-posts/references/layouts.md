@@ -61,9 +61,11 @@ Evitar:
 
 ## 4. Tipografía y texto
 
-### Reglas de texto
+### Reglas de texto y Tamaños (Referencia)
 
-- Titular grande y claro
+- **Titular (Headline)**: `72px`, interlineado `1`, tracking `-1.5px`. Margen inferior de `38-42px`.
+- **Subtítulo / Puntos clave**: `36px`, interlineado `1.15`. Separación vertical de `14px`.
+- **Número de slide y Branding**: `20px`.
 - Máximo 2 niveles principales:
   - Titular
   - Subtítulo / apoyo
@@ -106,34 +108,21 @@ Ideal para:
 
 ## Composición
 
-```text
-┌──────────────────────────────────────────────┐
-│ [Categoría]                         [01/05] │
-│                                              │
-│ TITULAR GRANDE                               │
-│ TITULAR GRANDE              AVATAR           │
-│ TITULAR GRANDE              GRANDE           │
-│                              DERECHA         │
-│ Subtítulo corto                              │
-│                                              │
-│ • Punto clave                                │
-│ • Punto clave                                │
-│                                              │
-│ Frase final / CTA                            │
-│                                              │
-│ [Branding]                                   │
-└──────────────────────────────────────────────┘
-```
+> **[IMPORTANTE]** Ya no se utiliza el antiguo diseño a ojo o manual. Para la composición visual del **Template A (Avatar a la Derecha)**, utiliza SIEMPRE el archivo base estructural:
+> 
+> 👉 **[`layout-left.html`](./layout-left.html)**
+> 
+> Este archivo proporciona el código fuente real con las proporciones, capas (`z-index`) y contenedores exactos que debes seguir.
 
-## Distribución
+## Distribución (Basado en layout-left.html)
 
-- Texto: lado izquierdo
-- Avatar: lado derecho
-- Texto: **50–55% del ancho**
-- Avatar: **40–50% del ancho**
-- Avatar recomendado: **55–70% del alto visual**
-- Avatar puede ir recortado por abajo o lateral derecho
-- El rostro debe tener presencia clara
+- **Texto (Contenido)**: Lado izquierdo, ocupa el **48% del ancho**. Posicionado a `185px` desde arriba y `62px` desde la izquierda.
+- **Avatar**: Lado derecho, ocupa el **56% del ancho**. Posicionado pegado a la derecha (`right: 0`) y abajo (`bottom: 0`).
+- **Número de slide**: Arriba a la izquierda (`top: 48px; left: 48px;`).
+- **Branding**: Abajo a la izquierda (`bottom: 42px; left: 48px;`).
+- El avatar tiene `height: 100%` con `object-fit: contain` anclado a la base (`bottom center`).
+- Avatar puede ir recortado por abajo o lateral derecho.
+- El rostro debe tener presencia clara.
 
 ## Reglas
 
@@ -161,35 +150,21 @@ Ideal para:
 
 ## Composición
 
-```text
-┌──────────────────────────────────────────────┐
-│ [Categoría]                         [02/05] │
-│                                              │
-│                                              │
-│ AVATAR                       TITULAR GRANDE  │
-│ GRANDE                       TITULAR GRANDE  │
-│ IZQUIERDA                    TITULAR GRANDE  │
-│                                              │
-│                              Subtítulo corto │
-│                                              │
-│                              • Punto clave   │
-│                              • Punto clave   │
-│                                              │
-│                              Frase / CTA     │
-│                                              │
-│                              [Branding]      │
-└──────────────────────────────────────────────┘
-```
+> **[IMPORTANTE]** Ya no se utiliza el antiguo diseño a ojo o manual. Para la composición visual del **Template B (Avatar a la Izquierda)**, utiliza SIEMPRE el archivo base estructural:
+> 
+> 👉 **[`layout-right.html`](./layout-right.html)**
+> 
+> Este archivo proporciona el código fuente real con las proporciones, capas (`z-index`) y contenedores exactos que debes seguir.
 
-## Distribución
+## Distribución (Basado en layout-right.html)
 
-- Avatar: lado izquierdo
-- Texto: lado derecho
-- Avatar: **40–50% del ancho**
-- Texto: **50–55% del ancho**
-- Avatar recomendado: **55–70% del alto visual**
-- Avatar puede ir recortado por abajo o lateral izquierdo
-- El avatar debe dirigir la atención hacia el texto
+- **Avatar**: Lado izquierdo, ocupa el **54% del ancho**. Posicionado pegado a la izquierda (`left: 0`) y abajo (`bottom: 0`).
+- **Texto (Contenido)**: Lado derecho, ocupa el **46% del ancho**. Posicionado a `180px` desde arriba y `74px` desde la derecha.
+- **Número de slide**: Arriba a la izquierda (`top: 48px; left: 48px;`), con `z-index: 3`.
+- **Branding**: Abajo a la derecha (`bottom: 42px; right: 48px;`), con `z-index: 3`.
+- El avatar tiene `height: 100%` con `object-fit: contain` anclado a la base (`bottom center`).
+- Avatar puede ir recortado por abajo o lateral izquierdo.
+- El avatar debe dirigir la atención hacia el texto.
 
 ## Reglas
 
@@ -307,9 +282,12 @@ Puede incluir:
 
 ## 10. Safe zones
 
-### Margen general
+### Margen general y posicionamiento
 
-Mantener un margen interno mínimo de **64 px**.
+Según las referencias de los layouts, los márgenes operativos exactos son:
+- **Superior/Inferior (Número y Branding)**: `48px` (superior) y `42px` (inferior).
+- **Lateral (Contenido)**: `62px` (layout izquierdo) o `74px` (layout derecho).
+- Mantener un respiro general y no salirse de estas coordenadas para mantener consistencia visual.
 
 ### Zonas críticas
 

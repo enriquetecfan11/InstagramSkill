@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, initial-scale=1.0" />
+    <title>Slide 1080x1080 Avatar Derecha</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* LIENZO EXACTO */
+        .canvas {
+            width: 1080px;
+            height: 1080px;
+            background: #dcdcdc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* NUMERO SLIDE */
+        .slide-number {
+            position: absolute;
+            top: 48px;
+            left: 48px;
+            font-size: 20px;
+            color: #1d1d1d;
+            font-weight: 400;
+        }
+
+        .content {
+            position: absolute;
+            top: 185px;
+            left: 48px; /* Margen izquierdo */
+            right: 48%; /* El texto termina antes de la mitad */
+            z-index: 10; /* Asegura que siempre esté por encima */
+        }
+
+        .headline {
+            font-size: 72px;
+            line-height: 1;
+            font-weight: 500;
+            color: #1d1d1d;
+            margin-bottom: 38px;
+            letter-spacing: -1.5px;
+        }
+
+        .subtitles {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 38px;
+            margin-left: 32px;
+        }
+
+        .subtitle {
+            font-size: 36px;
+            line-height: 1.15;
+            color: #222;
+            font-weight: 400;
+        }
+
+        .points {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-left: 32px;
+        }
+
+        .point {
+            font-size: 36px;
+            line-height: 1.15;
+            color: #222;
+            font-weight: 400;
+        }
+
+        /* BRANDING */
+        .branding {
+            position: absolute;
+            bottom: 42px;
+            left: 48px;
+            font-size: 20px;
+            color: #1d1d1d;
+            font-weight: 400;
+        }
+
+        .avatar-zone {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 46%; /* Reducido para no invadir el área de texto */
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        /* Placeholder parametrizable */
+        .avatar-placeholder {
+            width: 92%;
+            height: 94%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.22);
+            font-size: 52px;
+            font-weight: bold;
+            line-height: 1.15;
+            border: 2px dashed rgba(0, 0, 0, 0.08);
+            border-radius: 18px;
+        }
+
+        /*
+      Sustituir este bloque por:
+      <img src="avatar-01.png" class="avatar-img" />
+    */
+        .avatar-img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            object-position: bottom center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="canvas">
+
+        <!-- Numero -->
+        <div class="slide-number">Numero Slide</div>
+
+        <!-- Texto -->
+        <div class="content">
+            <h1 class="headline">Titular Grande</h1>
+
+            <div class="subtitles">
+                <div class="subtitle">Subtitulo Corto</div>
+                <div class="subtitle">Subtitulo Corto</div>
+                <div class="subtitle">Subtitulo Corto</div>
+                <div class="subtitle">Subtitulo Corto</div>
+            </div>
+
+            <div class="points">
+                <div class="point">Punto Clave</div>
+                <div class="point">Punto Clave</div>
+                <div class="point">Punto Clave</div>
+            </div>
+        </div>
+
+        <!-- Avatar -->
+        <div class="avatar-zone">
+            <div class="avatar-placeholder">
+                Avatar Grande<br />
+                Derecha
+            </div>
+        </div>
+
+        <!-- Branding -->
+        <div class="branding">enriquetecfan</div>
+
+    </div>
+</body>
+
+</html>

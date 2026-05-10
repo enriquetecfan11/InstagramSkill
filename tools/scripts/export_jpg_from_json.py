@@ -22,10 +22,8 @@ FONT_BOLD_CANDIDATES = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
 ]
 TEXT_ZONE_W = 594
-AVATAR_BOX_W = 430
-AVATAR_BOX_H = 700
-AVATAR_SIDE_MARGIN = 80
-AVATAR_BOTTOM_MARGIN = 50
+AVATAR_BOTTOM_MARGIN = 0
+AVATAR_HEIGHT_RATIO = 0.88
 
 
 def load_spec_module():
@@ -49,14 +47,35 @@ def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(resolve_font(candidates), size)
 
 
-def accent_color(name: str) -> tuple[int, int, int]:
-    colors = {
-        "cyan": (35, 213, 255),
-        "electric blue": (58, 134, 255),
-        "violet": (139, 92, 246),
-        "magenta": (255, 79, 216),
+def visual_palette(name: str) -> dict[str, tuple[int, int, int]]:
+    palettes = {
+        "cyan": {
+            "accent": (35, 213, 255),
+            "secondary": (57, 255, 136),
+            "danger": (255, 59, 79),
+        },
+        "electric blue": {
+            "accent": (58, 134, 255),
+            "secondary": (57, 255, 136),
+            "danger": (255, 59, 79),
+        },
+        "violet": {
+            "accent": (139, 92, 246),
+            "secondary": (35, 213, 255),
+            "danger": (255, 59, 79),
+        },
+        "magenta": {
+            "accent": (255, 79, 216),
+            "secondary": (35, 213, 255),
+            "danger": (255, 59, 79),
+        },
+        "hacker-red": {
+            "accent": (57, 255, 136),
+            "secondary": (35, 213, 255),
+            "danger": (255, 52, 72),
+        },
     }
-    return colors.get(str(name).lower(), colors["cyan"])
+    return palettes.get(str(name).lower(), palettes["cyan"])
 
 
 def is_enabled(config: dict, default: bool = False) -> bool:
@@ -105,7 +124,26 @@ def draw_wrapped(
     return y
 
 
-def make_background(accent: tuple[int, int, int]) -> Image.Image:
+def fit_font_size(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    max_width: int,
+    max_lines: int,
+    start: int,
+    minimum: int,
+) -> int:
+    for size in range(start, minimum - 1, -2):
+        fnt = font(size, True)
+        lines = wrap_text(draw, text, fnt, max_width)
+        if len(lines) <= max_lines and all(text_width(draw, line, fnt) <= max_width for line in lines):
+            return size
+    return minimum
+
+
+def make_background(palette: dict[str, tuple[int, int, int]]) -> Image.Image:
+    accent = palette["accent"]
+    secondary = palette["secondary"]
+    danger = palette["danger"]
     img = Image.new("RGB", (1080, 1080), (7, 11, 17))
     pix = img.load()
     for y in range(1080):
@@ -113,11 +151,13 @@ def make_background(accent: tuple[int, int, int]) -> Image.Image:
             base = 8 + int(9 * y / 1080)
             glow_r = math.hypot((x - 830) / 520, (y - 360) / 450)
             glow = max(0, 1 - glow_r) ** 2
-            violet_r = math.hypot((x - 250) / 620, (y - 930) / 380)
-            violet = max(0, 1 - violet_r) ** 2
-            r = base + int(accent[0] * glow * 0.12) + int(60 * violet * 0.16)
-            g = base + 4 + int(accent[1] * glow * 0.14) + int(40 * violet * 0.08)
-            b = base + 10 + int(accent[2] * glow * 0.16) + int(120 * violet * 0.16)
+            cool_r = math.hypot((x - 245) / 620, (y - 890) / 390)
+            cool = max(0, 1 - cool_r) ** 2
+            threat_r = math.hypot((x - 925) / 420, (y - 890) / 360)
+            threat = max(0, 1 - threat_r) ** 2
+            r = base + int(accent[0] * glow * 0.08) + int(secondary[0] * cool * 0.06) + int(danger[0] * threat * 0.07)
+            g = base + 4 + int(accent[1] * glow * 0.10) + int(secondary[1] * cool * 0.07) + int(danger[1] * threat * 0.03)
+            b = base + 10 + int(accent[2] * glow * 0.08) + int(secondary[2] * cool * 0.08) + int(danger[2] * threat * 0.03)
             pix[x, y] = (min(r, 255), min(g, 255), min(b, 255))
 
     overlay = Image.new("RGBA", (1080, 1080), (0, 0, 0, 0))
@@ -125,7 +165,13 @@ def make_background(accent: tuple[int, int, int]) -> Image.Image:
     for v in range(64, 1080, 72):
         d.line((v, 64, v, 1016), fill=(255, 255, 255, 12), width=1)
         d.line((64, v, 1016, v), fill=(255, 255, 255, 12), width=1)
-    d.rectangle((64, 64, 1016, 1016), outline=(*accent, 52), width=1)
+    for y in range(120, 930, 86):
+        d.text((720, y), "LOGS  METRICS  TRACES  SPANS", font=font(18), fill=(255, 255, 255, 34))
+    for y in range(166, 910, 144):
+        d.line((720, y, 1016, y), fill=(*danger, 32), width=1)
+    d.rectangle((64, 64, 1016, 1016), outline=(*accent, 44), width=1)
+    d.line((64, 64, 164, 64), fill=(*accent, 92), width=2)
+    d.line((916, 1016, 1016, 1016), fill=(*secondary, 92), width=2)
     return Image.alpha_composite(img.convert("RGBA"), overlay)
 
 
@@ -139,12 +185,18 @@ def trim_alpha(img: Image.Image) -> Image.Image:
 def paste_avatar(canvas: Image.Image, avatar_path: Path, template: str) -> None:
     avatar = Image.open(avatar_path).convert("RGBA")
     avatar = trim_alpha(avatar)
-    avatar.thumbnail((AVATAR_BOX_W, AVATAR_BOX_H), Image.Resampling.LANCZOS)
+    if template == "A":
+        box_x, box_w = 1080 - int(1080 * 0.56), int(1080 * 0.56)
+    else:
+        box_x, box_w = 0, int(1080 * 0.54)
+    box_h = 1080
+    target_h = int(box_h * AVATAR_HEIGHT_RATIO)
+    target_w = round(avatar.width * (target_h / avatar.height))
+    avatar = avatar.resize((target_w, target_h), Image.Resampling.LANCZOS)
 
-    box_x = 1080 - AVATAR_SIDE_MARGIN - AVATAR_BOX_W if template == "A" else AVATAR_SIDE_MARGIN
-    box_y = 1080 - AVATAR_BOTTOM_MARGIN - AVATAR_BOX_H
-    x = box_x + (AVATAR_BOX_W - avatar.width) // 2
-    y = box_y + AVATAR_BOX_H - avatar.height
+    box_y = 1080 - AVATAR_BOTTOM_MARGIN - box_h
+    x = box_x + (box_w - avatar.width) // 2
+    y = box_y + box_h - avatar.height
     canvas.alpha_composite(avatar, (x, y))
 
 
@@ -159,41 +211,47 @@ def draw_slide(slide: dict, avatar_path: Path, index: int, total: int, data: dic
         template = "A"
     else:
         template = "A" if index % 2 == 1 else "B"
-    accent = accent_color(visual.get("acento", "cyan"))
-    img = make_background(accent)
+    palette = visual_palette(visual.get("acento", "cyan"))
+    accent = palette["accent"]
+    secondary = palette["secondary"]
+    danger = palette["danger"]
+    img = make_background(palette)
     paste_avatar(img, avatar_path, template)
 
     draw = ImageDraw.Draw(img)
-    muted = (155, 176, 198)
-    white = (231, 238, 247)
+    white = (242, 247, 252)
+    muted = white
     show_hud = is_enabled(hud)
     show_slide_number = bool(hud.get("show_slide_number", show_hud))
     top_left = str(hud.get("top_left") or "").strip()
     eyebrow = str(hud.get("eyebrow") or "").strip()
 
     if show_hud and top_left:
-        draw.text((64, 66), top_left, font=font(24), fill=muted)
+        draw.text((48, 48), top_left, font=font(20), fill=muted)
     if show_slide_number:
         counter = f"{index:02d}/{total:02d}"
-        draw.text((1016 - text_width(draw, counter, font(24)), 66), counter, font=font(24), fill=muted)
+        draw.text((1032 - text_width(draw, counter, font(20)), 48), counter, font=font(20), fill=muted)
 
-    x = 64 if template == "A" else TEXT_ZONE_W
-    y = 190
-    max_w = 466 if template == "A" else 422
+    x = 48 if template == "A" else 1080 - 48 - int(1080 * 0.42)
+    y = 185 if template == "A" else 180
+    max_w = int(1080 * 0.40) if template == "A" else int(1080 * 0.42)
 
     if show_hud and eyebrow:
-        draw.text((x, y), eyebrow, font=font(22, True), fill=accent)
+        draw.text((x, y), eyebrow, font=font(20, True), fill=white)
         y += 58
-    y = draw_wrapped(draw, slide.get("titular", ""), (x, y), font(84, True), white, max_w, 2)
-    y += 26
-    y = draw_wrapped(draw, slide.get("subtitulo", ""), (x, y), font(36), muted, max_w, 6)
+    title_size = fit_font_size(draw, slide.get("titular", ""), max_w, 4, 72, 32)
+    y = draw_wrapped(draw, slide.get("titular", ""), (x, y), font(title_size, True), white, max_w, 2)
+    y += 38
+    indented_x = x + 32
+    indented_w = max_w - 32
+    y = draw_wrapped(draw, slide.get("subtitulo", ""), (indented_x, y), font(36), white, indented_w, 6)
 
     points = list(slide.get("puntos", []))[:2]
     if points:
         y += 28
         for point in points:
-            draw.ellipse((x, y + 15, x + 10, y + 25), fill=accent)
-            draw.text((x + 26, y), str(point), font=font(31, True), fill=white)
+            draw.ellipse((indented_x, y + 15, indented_x + 10, y + 25), fill=accent)
+            draw.text((indented_x + 26, y), str(point), font=font(31, True), fill=white)
             y += 46
 
     frase = slide.get("frase")
@@ -203,8 +261,8 @@ def draw_slide(slide: dict, avatar_path: Path, index: int, total: int, data: dic
 
     brand = str(brand_cfg.get("text") or "").strip()
     if is_enabled(brand_cfg) and brand:
-        bx = 64 if template == "A" else 1016 - text_width(draw, brand, font(24))
-        draw.text((bx, 986), brand, font=font(24), fill=muted)
+        bx = 48 if template == "A" else 1032 - text_width(draw, brand, font(20))
+        draw.text((bx, 1018), brand, font=font(20), fill=muted)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     img.convert("RGB").save(out_path, "JPEG", quality=95, optimize=True)
@@ -222,7 +280,7 @@ def main() -> None:
     out_dir = args.out or (ROOT / "outputs" / "carousels" / slug / "jpg")
     avatars = spec.select_avatars(spec.resolve_avatar_pack(data), len(data["slides"]))
     for idx, slide in enumerate(data["slides"], start=1):
-        draw_slide(slide, avatars[idx - 1], idx, len(data["slides"]), data, out_dir / f"slide-{idx:02d}.jpg")
+        draw_slide(slide, avatars[(idx - 1) % len(avatars)], idx, len(data["slides"]), data, out_dir / f"slide-{idx:02d}.jpg")
     print(out_dir)
 
 

@@ -20,6 +20,8 @@ Asignar 1–2 tags por pose:
 
 ## Asignación por slide (regla simple)
 
+- Si hay pack disponible, usar una pose distinta por slide siempre que el número de poses sea suficiente.
+- No repetir el mismo avatar en todo un carrusel de varias slides salvo que el usuario lo pida explicitamente.
 - Slide 1 (Hook): `authority` o `point`
 - Slides 2–3 (Problema/Reframe): `think` o `neutral`
 - Slides 4–6 (Mecanismo/Pasos): `point` o `builder`
@@ -30,4 +32,3 @@ Asignar 1–2 tags por pose:
 - Evitar re-ilustrar al avatar: preferir composición/edición.
 - Mantener tamaño relativo consistente (hero vs recurrente).
 - Si el carrusel es dark premium, aplicar glow/rim light constante (fino).
-
